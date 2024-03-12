@@ -152,3 +152,4 @@ namespace ReadApi
   "LastSecurityPointTime": "2024-04-23T18:25:43.511Z"
 }
 */
+//Learn Microsoft - https://learn.microsoft.com/ru-ru/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
