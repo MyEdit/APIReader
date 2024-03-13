@@ -1,24 +1,29 @@
 ﻿using ReadApi;
+using System.Net;
 
-PersonLocation person = await APIReader.getPersonLocation(1);
-if (person != null)
+APIManager APIManager = new();
+
+await APIManager.createMedicine(new Medicines(100, "Глицин", "Артемовский", 1000));
+await APIManager.deleteMedicine(0);
+await APIManager.updateMedicine(0, new Medicines(100, "Новый препарат", "Новый Склад", 0));
+
+Medicines medicine = await APIManager.getMedicine(0);
+if (medicine != null)
 {
-    Console.WriteLine(person.LastSecurityPointTime);
+    Console.WriteLine(medicine.Name);
     Console.WriteLine("========================");
     Console.WriteLine();
 }
 
-List<PersonLocation> personLocations = await APIReader.getPersonsLocations();
-if (personLocations != null)
+List<Medicines> medicines = await APIManager.getMedicines();
+if (medicines != null)
 {
-    foreach (PersonLocation personlocation in personLocations)
+    foreach (Medicines item in medicines)
     {
-        Console.WriteLine(personlocation.Id);
-        Console.WriteLine(personlocation.PersonCode);
-        Console.WriteLine(personlocation.PersonRole);
-        Console.WriteLine(personlocation.LastSecurityPointNumber);
-        Console.WriteLine(personlocation.LastSecurityPointDirection);
-        Console.WriteLine(personlocation.LastSecurityPointTime);
+        Console.WriteLine(item.ID);
+        Console.WriteLine(item.Name);
+        Console.WriteLine(item.Storage);
+        Console.WriteLine(item.Count);
         Console.WriteLine();
     }
 }
